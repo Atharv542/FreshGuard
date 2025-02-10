@@ -166,7 +166,7 @@
   },
   "scripts": {
     "build": "npm install && npm install --prefix myapp &&  npm run build --prefix myapp",
-    "start": "node server.js"
+    "start": "node backend/server.js"
     
   },
   "keywords": [],
