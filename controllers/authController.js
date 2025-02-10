@@ -122,26 +122,3 @@ export const testController = (req, res) => {
 
 
 
-export const setExpirationNotification = async (req, res) => {
-  const { itemName, expiryDate, phone } = req.body;
-
-  if (!itemName || !expiryDate || !phone) {
-    return res.status(400).json({ message: "All fields are required!" });
-  }
-
-  try {
-    const message = await client.messages.create({
-      body: `Reminder: Your item "${itemName}" will expire on ${expiryDate}. Please use it soon!`,
-      from: "+12766246384",
-      to: phone,
-    });
-
-    res.status(200).json({
-      success: true,
-      message: "Expiration notification sent successfully!",
-      messageSid: message.sid,
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Failed to send SMS.", error: error.message });
-  }
-};
