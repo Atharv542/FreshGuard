@@ -23,4 +23,5 @@
 - **Styling:** TailwindCSS  
 
 #HomePage
-![Alt Text](./Screenshot 2025-02-10 220303.png)
+![Home Page](./Screenshot%202025-02-10%20220303.png)
+
