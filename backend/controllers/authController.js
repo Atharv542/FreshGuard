@@ -3,7 +3,6 @@ import userModel from "../models/userModel.js";
 import JWT from "jsonwebtoken";
 import dotenv from "dotenv"
 
-import twilio from "twilio";
 
 
 
