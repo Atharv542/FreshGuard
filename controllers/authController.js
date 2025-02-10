@@ -121,9 +121,6 @@ export const testController = (req, res) => {
 };
 
 
-const accountSID="AC0a4152f343e8ca59243615482bbbc3b6"
-const authToken="500fb0496e0af51feda9816837384774"
-const client = twilio(accountSID,authToken);
 
 export const setExpirationNotification = async (req, res) => {
   const { itemName, expiryDate, phone } = req.body;
