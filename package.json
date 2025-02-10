@@ -168,7 +168,7 @@
     "frontend": "npm run dev --prefix myapp",
     "backend": "node backend/server.js",
     "build": "npm install && npm install --prefix myapp &&  npm run build --prefix myapp",
-    "start": "node backend/server.js",
+    "start": "node server.js",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "keywords": [],
