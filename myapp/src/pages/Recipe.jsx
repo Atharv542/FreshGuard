@@ -10,8 +10,12 @@ const Recipe = () => {
   }, []);
 
   return (
-    <div className="recipe-list bg-black w-full min-h-screen">
-      <h2 className="text-white text-2xl font-bold  mx-[650px] mb-5">Generated Recipes</h2>
+    <div className="recipe-list bg-black w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-10">
+      {/* Heading - Adjusted for responsiveness */}
+      <h2 className="text-white text-2xl font-bold text-center lg:mx-[600px] mb-5">
+        Generated Recipes
+      </h2>
+
       {recipes.length > 0 ? (
         recipes.map((recipeObj, index) => {
           let recipeData;
@@ -19,13 +23,17 @@ const Recipe = () => {
             recipeData = JSON.parse(recipeObj.recipe);
           } catch {
             return (
-              <div key={index} className="p-5 bg-red-500 text-white rounded-lg">
+              <div key={index} className="p-5 bg-red-500 text-white rounded-lg mx-auto max-w-lg">
                 Invalid recipe data format.
               </div>
             );
           }
           return (
-            <div key={index} className="p-5 mb-5 rounded-lg mx-36 shadow-lg">
+            <div 
+              key={index} 
+              className="p-5 mb-5 rounded-lg shadow-lg 
+                mx-4 sm:mx-6 md:mx-10 lg:mx-36"
+            >
               <h3 className="text-xl text-orange-400 font-bold">
                 Item Name: {recipeObj.itemName}
               </h3>
@@ -35,12 +43,16 @@ const Recipe = () => {
               <p className="text-gray-300 mt-2">
                 Estimated Time: {recipeData.estimatedTime}
               </p>
+
+              {/* Ingredients Section */}
               <h4 className="text-orange-300 mt-3">Ingredients:</h4>
               <ul className="list-disc list-inside text-white">
                 {recipeData.ingredients.map((ingredient, i) => (
                   <li key={i}>{ingredient}</li>
                 ))}
               </ul>
+
+              {/* Instructions Section */}
               <h4 className="text-orange-300 mt-3">Instructions:</h4>
               <ol className="list-decimal list-inside text-white">
                 {recipeData.instructions.map((instruction, i) => (
@@ -51,8 +63,8 @@ const Recipe = () => {
           );
         })
       ) : (
-        <div className='w-full min-h-screen flex justify-center mt-20'>
-        <p className="text-gray-300 text-3xl">No recipes generated yet.</p>
+        <div className="w-full min-h-screen flex justify-center items-center text-center">
+          <p className="text-gray-300 text-2xl sm:text-3xl">No recipes generated yet.</p>
         </div>
       )}
     </div>
@@ -60,4 +72,5 @@ const Recipe = () => {
 };
 
 export default Recipe;
+
 
