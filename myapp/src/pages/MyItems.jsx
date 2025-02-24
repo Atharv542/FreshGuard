@@ -22,41 +22,42 @@ const MyItems = () => {
 
 
   const handleAddOrEditItem = () => {
-    if (itemName && expiryDate) {
-      const expiry = new Date(expiryDate);
-      const today = new Date();
+  if (itemName && expiryDate) {
+    const expiry = new Date(expiryDate);
+    const today = new Date();
 
-      if (expiry < today) {
-        toast.error("Please enter a valid date.");
-        setItemName('');
-        setExpiryDate('');
-        return;
-      }
-
-      if (editIndex !== null) {
-        const updatedItems = [...items];
-        updatedItems[editIndex] = { name: itemName, expiry };
-        setItems(updatedItems);
-        setEditIndex(null);
-        toast.success(`Item updated successfully.`);
-      } else {
-        const newItem = { name: itemName, expiry };
-        setItems([...items, newItem]);
-        toast.success(`The item ${newItem.name} added successfully`, {
-          duration: 3000,
-        });
-
-        if (isAboutToExpire(expiry)) {
-          sendEmail(newItem.name, expiry.toLocaleDateString());
-        }
-      }
-
+    if (expiry < today) {
+      toast.error("Please enter a valid date.");
       setItemName('');
       setExpiryDate('');
-    } else {
-      toast.error("Please fill in all fields.");
+      return;
     }
-  };
+
+    if (editIndex !== null) {
+      const updatedItems = [...items];
+      updatedItems[editIndex] = { name: itemName, expiry: expiry.toISOString() }; // Store expiry as a string
+      setItems(updatedItems);
+      setEditIndex(null);
+      toast.success(`Item updated successfully.`);
+    } else {
+      const newItem = { name: itemName, expiry: expiry.toISOString() };
+      setItems([...items, newItem]);
+      toast.success(`The item ${newItem.name} added successfully`, {
+        duration: 3000,
+      });
+
+      if (isAboutToExpire(expiry)) {
+        sendEmail(newItem.name, expiry.toLocaleDateString());
+      }
+    }
+
+    setItemName('');
+    setExpiryDate('');
+  } else {
+    toast.error("Please fill in all fields.");
+  }
+};
+
 
   const sendEmail = (itemName, expiryDate) => {
     const userDataString = localStorage.getItem("auth");
@@ -153,12 +154,13 @@ const MyItems = () => {
     navigate('/view-recipe');
   };
 
-  const handleEditItem = (index) => {
-    const item = items[index];
-    setItemName(item.name);
-    setExpiryDate(item.expiry.toISOString().substring(0, 10));
-    setEditIndex(index);
-  };
+const handleEditItem = (index) => {
+  const item = items[index];
+  setItemName(item.name);
+  setExpiryDate(new Date(item.expiry).toISOString().split("T")[0]); // Ensure correct format
+  setEditIndex(index);
+};
+
 
   return (
     <div className="expiry-tracker-container bg-black w-100% h-screen">
