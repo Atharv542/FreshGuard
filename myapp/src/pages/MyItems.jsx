@@ -162,19 +162,19 @@ const MyItems = () => {
 
   return (
     <div className="expiry-tracker-container bg-black w-100% h-screen">
-      <div className="h-40 mx-40 py-10">
-        <h2 className="text-white text-3xl font-bold">
+      <div className="h-40  sm:mx-20 md:mx-30 lg:mx-40 sm:py-20 md:py-15 lg:py-10">
+        <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
           Turn Forgotten Ingredients into Fresh Opportunities
         </h2>
-        <p className="mt-3 text-gray-300 text-xl">
+        <p className="mt-3 text-gray-300 text-md sm:text-lg md:text-xl leading-relaxed">
           Keep your pantry organized by listing items you want to track. We'll remind you before they expire, so you can use them in time and reduce waste.
         </p>
       </div>
 
       <div>
-        <h2 className="font-md text-xl my-3 mx-40 text-white">Item Name</h2>
+        <h2 className="font-md text-xl sm:mt-20 md:mt-5 lg:mt-3 sm:px-32 md:px-36 lg:px-40 text-white">Item Name</h2>
         <input
-          className="mx-40 bg-transparent border border-orange-300 shadow-lg rounded-md w-5/12 p-2 text-white"
+          className="sm:mx-20 md:mx-30 lg:mx-40 bg-transparent border border-orange-300 shadow-lg rounded-md w-5/12 p-2 text-white"
           type="text"
           placeholder="Enter Item Name"
           value={itemName}
@@ -183,21 +183,21 @@ const MyItems = () => {
         />
       </div>
       <div>
-        <h2 className="font-md text-xl my-3 mx-40 text-white">Expiry Date</h2>
+        <h2 className="font-md text-xl my-3 sm:mx-20 md:mx-30 lg:mx-40 text-white">Expiry Date</h2>
         <input
           type="date"
           value={expiryDate}
           onChange={(e) => setExpiryDate(e.target.value)}
           required
-          className="mx-40 bg-transparent border border-orange-300 shadow-lg rounded-md w-5/12 p-2 text-white"
+          className="sm:mx-20 md:mx-30 lg:mx-40 bg-transparent border border-orange-300 shadow-lg rounded-md w-5/12 p-2 text-white"
         />
       </div>
 
-      <button onClick={handleAddOrEditItem} className="text-white border border-orange-300 p-2 mt-10 mx-[700px]">
+      <button onClick={handleAddOrEditItem} className="text-white border border-orange-300 p-2 mt-10 block mx-auto">
         {editIndex !== null ? 'Update Item' : 'Add Item'}
       </button>
 
-      <div className="item-list grid grid-cols-3 gap-5 mt-5 mx-40">
+      <div className="item-list grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5  sm:px-32 md:px-36 lg:px-40">
         {items.map((item, index) => (
           <div
             key={index}
