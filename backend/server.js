@@ -19,7 +19,7 @@ const app = express();
 const _dirname=path.resolve();
 //middelwares
 const corsOptions={
-  origin:"https://freshguard-1.onrender.com",
+  origin:"https://freshguard-frontend.onrender.com",
   credentials:true
 }
 app.use(cors(corsOptions));
