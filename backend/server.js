@@ -20,12 +20,15 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //middelwares
-app.use(cors({
-  origin: ["https://freshguard-frontend.onrender.com"], 
-  methods: ["GET", "POST"],
-  credentials: true,
-}));
-app.options('*', cors());
+
+const corsOptions = {
+  origin: "https://freshguard-frontend.onrender.com",
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); 
+
 
 
 app.use(express.json());
