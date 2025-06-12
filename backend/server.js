@@ -5,7 +5,8 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import bodyParser from "body-parser";
-import path from "path"
+import path from "path";
+import { fileURLToPath } from 'url';
 
 //configure env
 dotenv.config();
@@ -16,7 +17,8 @@ connectDB();
 
 //rest object
 const app = express();
-const _dirname=path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 //middelwares
 app.use(cors({
   origin: ["https://freshguard-frontend.onrender.com"], 
@@ -31,13 +33,13 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended:false}));
 //routes
 app.use("/api/v1/auth", authRoutes);
-app.use(express.static(path.join(_dirname, "../myapp/dist")));
 
 
+app.use(express.static(path.join(__dirname, "myapp/dist")));
 app.get("*", (req, res) => {
-  if (req.originalUrl.startsWith("/socket.io")) return;
-  res.sendFile(path.join(_dirname, "../myapp/dist", "index.html"));
+  res.sendFile(path.join(__dirname, "myapp/dist", "index.html"));
 });
+
 
 
 
