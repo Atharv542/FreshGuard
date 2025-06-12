@@ -25,15 +25,12 @@ const corsOptions={
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// routes
+app.use(bodyParser.urlencoded({extended:false}));
+//routes
 app.use("/api/v1/auth", authRoutes);
-
-app.use(express.static(path.join(__dirname, "myapp/dist")));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, "myapp/dist", "index.html"));
+app.use(express.static(path.join(_dirname,"myapp/dist")));
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(_dirname, 'myapp/dist', 'index.html'))
 });
 
 
