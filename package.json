@@ -165,11 +165,10 @@
     "yargs-parser": "^21.1.1"
   },
   "scripts": {
-<<<<<<< HEAD
+
     "frontend": "npm run dev --prefix myapp",
     "backend": "node server.js",
-=======
->>>>>>> a69a9dcb836142f5382119850d7cb95153718222
+
     "build": "npm install && npm install --prefix myapp &&  npm run build --prefix myapp",
     "start": "node backend/server.js"
     
