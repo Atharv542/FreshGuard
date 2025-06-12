@@ -4,6 +4,7 @@ import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/auth';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -95,8 +96,11 @@ const Login = () => {
 
         {/* Register Link */}
         <p className="mt-4 text-sm text-center text-white">
-          Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a>
-        </p>
+  Don't have an account?{' '}
+  <Link to="/register" className="text-blue-500 hover:underline">
+    Register
+  </Link>
+</p>
       </div>
     </div>
   );
