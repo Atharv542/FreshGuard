@@ -18,7 +18,11 @@ connectDB();
 const app = express();
 const _dirname=path.resolve();
 //middelwares
-app.use(cors({ origin: '*' }));
+const corsOptions={
+  origin:"https://freshguard-frontend.onrender.com",
+  credentials:true
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended:false}));
